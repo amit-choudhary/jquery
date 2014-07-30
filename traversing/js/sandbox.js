@@ -19,7 +19,7 @@ $(function() {
   // Select the first list item in the #slideshow element; add the class "current" to it, and then add a class of "disabled" to its sibling elements.
   var firstListItem = $("#slideshow li:eq(0)");
   firstListItem.addClass("current");
-  var siblingElements = firstListItem.siblings("li");
+  var siblingElements = firstListItem.siblings();
   siblingElements.each(function() {
     $(this).addClass("disabled");
   } );
