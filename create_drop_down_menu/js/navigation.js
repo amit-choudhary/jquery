@@ -16,7 +16,7 @@ DropDownMenu.prototype.bindEvents = function() {
 }
 
 $(function() {
-  var dropDownList = $('#nav li')
+  var dropDownList = $('#nav li'),
       dropDownObject = new DropDownMenu(dropDownList);
   dropDownObject.bindEvents();
 } );
