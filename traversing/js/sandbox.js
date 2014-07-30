@@ -8,9 +8,9 @@ $(function() {
   $("label[for = q]").parents("form").addClass("newClass");
 
   // Select the list item inside #myList that has a class of "current" and remove that class from it; add a class of "current" to the next list item.
-  var findElement = $("#myList").find(".current");
-  findElement.removeClass();
-  findElement.next().addClass("current");
+  var listItem = $("#myList").find(".current");
+  listItem.removeClass();
+  listItem.next().addClass("current");
 
   //Select the select element inside #specials; traverse your way to the submit button.
   var selectElement = $("#specials").find("select");
