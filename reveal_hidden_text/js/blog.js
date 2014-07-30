@@ -16,7 +16,7 @@ Blog.prototype.slideDownBlogPost = function(blogPost) {
 }
 
 $(function() {
-var blogPostsList = $('#blog h3');
-var blogPost = new Blog(blogPostsList);
-blogPost.bindEvents();
+  var blogPostsList = $('#blog h3');
+  var blogPost = new Blog(blogPostsList);
+  blogPost.bindEvents();
 } );
