@@ -9,8 +9,8 @@ TabbedNavigation.prototype.init = function() {
   $(_this.divModules[0]).before(_this.newList);
   _this.divModules.each(function() {
     _this.newList.append($('<li></li>')
-                   .text($(this).find('h2')
-                                  .text()));
+                    .text($(this).find('h2')
+                                    .text()));
   } );
   _this.newList.click(function(event) {
      $(this).find('li').removeClass('current');
