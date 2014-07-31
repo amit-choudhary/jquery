@@ -8,7 +8,7 @@ $(function() {
   $('#myListItem').css('background-color', 'yellow');
   // direct is selector is bese because it is independent of dom structure.
   // Select the label for the search input using an attribute selector.
-  $('label[for = 'q']').css('background-color', 'green');
+  $('label[for = "q"]').css('background-color', 'green');
   // Figure out how many elements on the page are hidden
   alert('Number of hidden elements are: ' + $(':hidden').length);
   // Figure out how many image elements on the page have an alt attribute.
