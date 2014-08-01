@@ -25,7 +25,6 @@ LoadJson.prototype.loadJsonContent = function() {
         }
       } );
   } );
-
 }
 
 $(function() {
