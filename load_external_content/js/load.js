@@ -30,7 +30,7 @@ LoadExternalContent.prototype.getContent = function(currentHeading) {
 };
 
 $(function() {
-  var blogHeadings = $('#blog h3');
+  var blogHeadings = $('#blog h3'),
       loadObject = new LoadExternalContent(blogHeadings);
   loadObject.init();
 } );
