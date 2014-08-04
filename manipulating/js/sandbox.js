@@ -9,7 +9,7 @@ $(function() {
   // Add another h2 and another paragraph to the last div.module.
   var newHeader = $('<h2></h2>').text('New Header');
   var newParagraph = $('<p></p>').text('New Paragraph');
-  $('div .module').append(newHeader, newParagraph);
+  $('div.module').append(newHeader, newParagraph);
   // Add another option to the select element; give the option the value "Wednesday".
   $('<option>', {
     value: 'Wednesday',
