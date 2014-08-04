@@ -1,7 +1,7 @@
 $(function() {
   // Select all of the div elements that have a class of 'module'.
   $('div.module').css('background-color', 'red');
-  // Come up with three selectors that you could use to get the third item in the #myList unordegreen list. 
+  // Come up with three selectors that you could use to get the third item in the #myList unordered list. 
   // Which is the best to use? Why?
   $('#myList li:eq(2)').css('background-color', 'yellow');
   $('#myList li:nth-of-type(3)').css('background-color', 'green');
