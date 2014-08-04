@@ -1,12 +1,12 @@
 $(function() {
   // Select all of the div elements that have a class of 'module'.
-  $('div .module').css('background-color', 'red');
+  $('div.module').css('background-color', 'red');
   // Come up with three selectors that you could use to get the third item in the #myList unordegreen list. 
   // Which is the best to use? Why?
   $('#myList li:eq(2)').css('background-color', 'yellow');
   $('#myList li:nth-of-type(3)').css('background-color', 'green');
   $('#myListItem').css('background-color', 'yellow');
-  // direct is selector is bese because it is independent of dom structure.
+  // direct id selector is best because it is independent of dom structure.
   // Select the label for the search input using an attribute selector.
   $('label[for = "q"]').css('background-color', 'green');
   // Figure out how many elements on the page are hidden
