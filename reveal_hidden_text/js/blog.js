@@ -5,15 +5,14 @@ function Blog(blogPostsList) {
 Blog.prototype.performOnClick = function() {
   var _this = this;
   _this.blogPostsList.click(function(event) {
-    $('#blog .excerpt').slideUp();
     event.preventDefault();
+    $('#blog .excerpt:visible').slideUp();
     _this.slideDownBlogPost(this);
   } );
 }
 
 Blog.prototype.slideDownBlogPost = function(blogPost) {
-  $(blogPost).next('.excerpt')
-                .slideDown();
+  $(blogPost).next('.excerpt').slideDown();
 }
 
 $(function() {
