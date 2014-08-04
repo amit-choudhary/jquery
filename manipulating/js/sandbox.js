@@ -1,9 +1,10 @@
 $(function() {
   // Add five new list items to the end of the unordered list #myList.
+  var list = '';
   for (var i = 8; i < 13 ; i++) {
-    var newList = $('<li>List item ' + i + '</li>');
-    $('#myList').append(newList);
+    list += '<li>List item ' + i + '</li>';
   }
+  $('#myList').append(list);
   // Remove the odd list items.
   $('#myList li:odd').remove();
   // Add another h2 and another paragraph to the last div.module.
