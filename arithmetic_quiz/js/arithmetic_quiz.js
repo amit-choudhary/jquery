@@ -1,4 +1,4 @@
-function ArithmeticQuiz() {
+function ArithmeticQuiz(questionDiv, resultBox, scoreBox, finalResult, nextButton) {
   this.score = 0;
   this.operators = [
     {
@@ -21,10 +21,11 @@ function ArithmeticQuiz() {
   this.wrongAnswers = [];
   this.numberOfQuestions = 0;
   this.questionGenerated = [];
-  this.questionDiv = $('#question');
-  this.resultBox = $('#result');
-  this.scoreBox = $('#score');
-  this.finalResult = $('#final-result')
+  this.questionDiv = questionDiv;
+  this.resultBox = resultBox;
+  this.scoreBox = scoreBox;
+  this.nextButton = nextButton;
+  this.finalResult = finalResult;
   this.wrongAnsweredQuestions = [];
   this.answerOfWrongAnsweredQuestions = [];
 }
@@ -35,7 +36,7 @@ ArithmeticQuiz.prototype.init = function() {
   _this.questionDiv.text(_this.randomQuestionGenerated);
   _this.numberOfQuestions++;
   _this.questionGenerated.push(_this.randomQuestionGenerated);
-  $('#next-button').click(function() {
+  _this.nextButton.click(function() {
     _this.performOnClick();
   } );
 }
@@ -84,6 +85,11 @@ ArithmeticQuiz.prototype.randomQuestion = function() {
 }
 
 $(function() {
-  var arithmeticQuiz = new ArithmeticQuiz();
+  var questionDiv = $('#question'),
+      resultBox = $('#result'),
+      scoreBox = $('#score'),
+      finalResult = $('#final-result'),
+      nextButton = $('#next-button');
+      arithmeticQuiz = new ArithmeticQuiz(questionDiv, resultBox, scoreBox, finalResult, nextButton);
   arithmeticQuiz.init();
 } );
