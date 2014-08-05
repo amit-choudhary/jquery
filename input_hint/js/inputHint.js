@@ -7,8 +7,15 @@ function CreateInputHint(searchInputElement, labelElement, labelText) {
 CreateInputHint.prototype.init = function() {
   this.addHint();
   this.removeLabelElement();
-  this.bindFocusEvent();
-  this.bindBlurEvent();
+  this.bindEvents();
+}
+
+CreateInputHint.prototype.bindEvents = function() {
+  var _this = this;
+  _this.searchInput.on({
+    focus: function() { _this.performOnFocus(); },
+    blur: function() { _this.performOnBlur(); }
+  } );
 }
 
 CreateInputHint.prototype.addHint = function() {
@@ -21,26 +28,12 @@ CreateInputHint.prototype.removeLabelElement = function() {
   this.labelElement.remove();
 }
 
-CreateInputHint.prototype.bindFocusEvent = function() {
-  var _this = this;
-  _this.searchInput.focus(function(event) {
-    _this.performOnFocus();
-  } );
-}
-
 CreateInputHint.prototype.performOnFocus = function() {
   if(this.searchInput.val() == this.hintText) {
     this.searchInput
       .val('')
       .removeClass('hint'); 
   }
-}
-
-CreateInputHint.prototype.bindBlurEvent = function() {
-  var _this = this;
-  _this.searchInput.blur(function() {
-    _this.performOnBlur(); 
-  } );
 }
 
 CreateInputHint.prototype.performOnBlur = function() {
