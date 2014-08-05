@@ -10,7 +10,7 @@ Slideshow.prototype.init = function() {
   this.slideshowElement.append(this.navigationArea);
   $('body').prepend(this.slideshowElement);
   this.listElements.hide();
-  this.startSlideshow()
+  this.createSlideshow()
 }
 
 Slideshow.prototype.fadeInAndOut = function(index) {
@@ -20,16 +20,16 @@ Slideshow.prototype.fadeInAndOut = function(index) {
   this.navigationArea.text('Showing ' + (index + 1)  + ' of ' + this.numberOfImages + ' images');
 }
 
-Slideshow.prototype.startSlideshow = function() {
+Slideshow.prototype.createSlideshow = function() {
   var _this = this;
   _this.fadeInAndOut(_this.currentIndex);
   _this.currentIndex++;
   setInterval(function() {
-    _this.startfading();
+    _this.startSlideshow();
   }, 4000);
 }
 
-Slideshow.prototype.startfading = function() {
+Slideshow.prototype.startSlideshow = function() {
   this.fadeInAndOut(this.currentIndex);
   this.currentIndex++;
   if (this.currentIndex == this.numberOfImages) {
