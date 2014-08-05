@@ -30,9 +30,9 @@ CreateInputHint.prototype.bindFocusEvent = function() {
 
 CreateInputHint.prototype.performOnFocus = function() {
   if(this.searchInput.val() == this.hintText) {
-  this.searchInput
-    .val('')
-    .removeClass('hint'); 
+    this.searchInput
+      .val('')
+      .removeClass('hint'); 
   }
 }
 
