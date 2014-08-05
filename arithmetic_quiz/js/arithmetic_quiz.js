@@ -1,23 +1,5 @@
 function ArithmeticQuiz(questionDiv, resultBox, scoreBox, finalResult, nextButton) {
   this.score = 0;
-  this.operators = [
-    {
-      sign: "+",
-      method: function(a,b){ return a + b; }
-    },
-    {
-      sign: "-",
-      method: function(a,b) { return a - b; }
-    },
-    {
-      sign: '*',
-      method: function(a,b) { return a * b; }
-    },
-    {
-      sign: '/',
-      method: function(a,b) { return (a / b).toFixed(2); }
-    } 
-  ];
   this.wrongAnswers = [];
   this.numberOfQuestions = 0;
   this.questionGenerated = [];
@@ -28,10 +10,11 @@ function ArithmeticQuiz(questionDiv, resultBox, scoreBox, finalResult, nextButto
   this.finalResult = finalResult;
   this.wrongAnsweredQuestions = [];
   this.answerOfWrongAnsweredQuestions = [];
+  this.randomNumberRange = 20;
 }
 
 ArithmeticQuiz.prototype.init = function() {
-  this.randomQuestionGenerated = this.randomQuestion();
+  this.randomQuestionGenerated = this.generateRandomQestion();
   var _this = this;
   _this.questionDiv.text(_this.randomQuestionGenerated);
   _this.numberOfQuestions++;
@@ -41,14 +24,24 @@ ArithmeticQuiz.prototype.init = function() {
   } );
 }
 
+ArithmeticQuiz.prototype.generateRandomQestion = function() {
+  var questionObject = new Question(this.randomNumberRange);
+  this.getAnswer(questionObject);
+  return questionObject.getRandomQuestion();
+}
+
+ArithmeticQuiz.prototype.getAnswer = function(questionObject) {
+  this.answer = questionObject.getanswer();
+}
+
 ArithmeticQuiz.prototype.performOnClick = function() {
   var _this = this;
-  if (_this.numberOfQuestions > 20){
+  if (_this.numberOfQuestions > _this.randomNumberRange){
     _this.showResult();
   }
   else {
     _this.checkAnswer(_this.randomQuestionGenerated);
-    _this.randomQuestionGenerated = _this.randomQuestion();
+    _this.randomQuestionGenerated = _this.generateRandomQestion();
     _this.questionDiv.text(_this.randomQuestionGenerated);
     _this.numberOfQuestions++;
     _this.questionGenerated.push(_this.randomQuestionGenerated);
@@ -66,22 +59,14 @@ ArithmeticQuiz.prototype.showResult = function() {
 }
 
 ArithmeticQuiz.prototype.checkAnswer = function(randomQuestionGenerated) {
-  var actualResult = this.operators[this.selectedOperator].method(this.rnum1, this.rnum2);
-  if (this.resultBox.val().trim() != actualResult) {
+  if (this.resultBox.val().trim() != this.answer) {
     this.wrongAnsweredQuestions.push(randomQuestionGenerated);
-    this.answerOfWrongAnsweredQuestions.push(actualResult); 
+    this.answerOfWrongAnsweredQuestions.push(this.answer); 
   }
   else {
     this.score++;
   }
   this.resultBox.val('');
-}
-
-ArithmeticQuiz.prototype.randomQuestion = function() {
-  this.selectedOperator = Math.floor(Math.random() * this.operators.length);
-  this.rnum1 = Math.floor((Math.random() * 20) + 1);
-  this.rnum2 = Math.floor((Math.random() * 20) + 1);
-  return(' ' + this.rnum1 + this.operators[this.selectedOperator].sign + this.rnum2);
 }
 
 $(function() {
