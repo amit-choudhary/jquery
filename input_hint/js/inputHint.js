@@ -1,34 +1,34 @@
-function CreateInputHint(searchInputElement, labelElement, labelText) {
-  this.searchInput = searchInputElement;
-  this.labelElement = labelElement;
-  this.hintText = labelText;
+function InputHint(elements) {
+  this.searchInput = elements.searchInputElement;
+  this.labelElement = elements.labelElement;
+  this.hintText = this.labelElement.text();
 }
 
-CreateInputHint.prototype.init = function() {
+InputHint.prototype.init = function() {
   this.addHint();
   this.removeLabelElement();
   this.bindEvents();
 }
 
-CreateInputHint.prototype.bindEvents = function() {
+InputHint.prototype.bindEvents = function() {
   var _this = this;
   _this.searchInput.on({
-    focus: function() { _this.performOnFocus(); },
-    blur: function() { _this.performOnBlur(); }
+    focus: function() { _this.onFocus(); },
+    blur: function() { _this.onBlur(); }
   } );
 }
 
-CreateInputHint.prototype.addHint = function() {
+InputHint.prototype.addHint = function() {
   this.searchInput
     .val(this.hintText)
     .addClass('hint');
 }
 
-CreateInputHint.prototype.removeLabelElement = function() {
+InputHint.prototype.removeLabelElement = function() {
   this.labelElement.remove();
 }
 
-CreateInputHint.prototype.performOnFocus = function() {
+InputHint.prototype.onFocus = function() {
   if(this.searchInput.val() == this.hintText) {
     this.searchInput
       .val('')
@@ -36,7 +36,7 @@ CreateInputHint.prototype.performOnFocus = function() {
   }
 }
 
-CreateInputHint.prototype.performOnBlur = function() {
+InputHint.prototype.onBlur = function() {
   if (this.searchInput.val().trim() == '' || this.searchInput.val() == null) {
     this.searchInput
       .val(this.hintText)
@@ -45,9 +45,10 @@ CreateInputHint.prototype.performOnBlur = function() {
 }
 
 $(function() {
-  var searchInputElement = $(':text[name="q"]'),
-      labelElement = $('label[for="q"]'),
-      labelText = labelElement.text(),
-      inputHint = new CreateInputHint(searchInputElement, labelElement, labelText);
+  var elements = {
+    searchInputElement : $(':text[name="q"]'),
+    labelElement : $('label[for="q"]')
+  }
+  var inputHint = new InputHint(elements);
   inputHint.init();
 } );
