@@ -37,7 +37,7 @@ InputHint.prototype.onFocus = function() {
 }
 
 InputHint.prototype.onBlur = function() {
-  if (this.searchInput.val().trim() == '' || this.searchInput.val() == null) {
+  if (!(this.searchInput.val().trim()) || this.searchInput.val() == null) {
     this.searchInput
       .val(this.hintText)
       .addClass('hint'); 
