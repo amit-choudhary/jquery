@@ -54,6 +54,7 @@ TodoManager.prototype.bindEvents = function() {
       user.toDoList.push(todo.todoitem);
       _this.appendTotodoList(todoitemvalue, user);
       _this.changeUserListContent(user);
+      _this.todoItem.val('');
     }
   } );
 
