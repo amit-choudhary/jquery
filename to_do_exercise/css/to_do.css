@@ -1,0 +1,62 @@
+#section {
+  background-color: #99ccff;
+}
+
+#upper-section {
+  padding-top: 20px;
+  display: table;
+}
+
+#upper-left {
+  width: 800px;
+  display: table-cell;
+  text-align: center;
+}
+
+#upper-right {
+  width: 250px;
+  display: inline;
+  padding-left: 50px;
+}
+
+#lower-section {
+  margin-top: 50px;
+  padding-right: 90px;
+  display: block;
+  border-top: 2px solid black;
+}
+
+#lower-left {
+  width: 800px;
+  display: table-cell;
+}
+
+#lower-right {
+  width: 500px;
+  display: table-cell;
+  text-align: center;
+}
+
+#useradd-section{
+  padding-top: 25px;
+}
+
+input {
+  width: 200px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+h3 {
+  text-align: center;
+}
+
+.checkbox {
+  background-color: yellow;
+}
+
+.lineThrough {
+  text-decoration: line-through;
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>
+      To Do App
+    </title>
+    <link rel="stylesheet" type="text/css" href="css/to_do.css">
+    <script type="text/javascript" src="lib/jquery-2.1.1.js">
+    </script>
+  </head>
+  <body>
+    <div id="section">
+      <div id="upper-section">
+        <div id="upper-left">
+          <label>To Do:</label>
+          <input type="text" id="todo-item">
+          <select id="dropdown-list"></select>
+          <button id="save-todo">Save</button>
+        </div>
+        <div id="upper-right">
+          <button id="create-todo" value="Create To Do">Create To Do</button>
+          <button id="create-user" value="Create User">Create User</button><br>
+        </div>
+        <div id="useradd-section">
+          <label>Name</label>
+          <input type="text" id="name-input">
+          <button id="add-name">Add</button>
+        </div>
+      </div>
+      <div id="lower-section">
+        <div id="lower-left">
+          <h3>TO DO LIST</h3>
+          <ul id="todo-list">
+          </ul>
+        </div>
+        <div id="lower-right">
+          <h3>Users List</h3>
+          <ul id="users-list">
+          </ul>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="js/users.js"></script>
+    <script type="text/javascript" src="js/todolist.js"></script>
+    <script type="text/javascript" src="js/todomanager.js"></script>
+  </body>
+</html>
