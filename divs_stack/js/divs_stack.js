@@ -1,40 +1,40 @@
-function DynamicDivs(mainSection) {
-  this.mainSection = mainSection
-  this.count = 0 ;
+function DynamicDiv(mainSection) {
+  this.mainSection = mainSection;
+  this.count = 0;
 }
 
-DynamicDivs.prototype.init = function() {
+DynamicDiv.prototype.init = function() {
   this.bindEvents();
 }
 
-DynamicDivs.prototype.bindEvents = function() {
+DynamicDiv.prototype.bindEvents = function() {
   var _this = this;
   $('#add-stack').on('click', function(){
     _this.addDiv();
   } );
-  _this.mainSection.on('click','.innerDiv' ,function() {
+  _this.mainSection.on('click', '.innerDiv',function() {
     _this.divClickHandler(this);
   } );
 }
 
-DynamicDivs.prototype.addDiv = function() {
+DynamicDiv.prototype.addDiv = function() {
   this.count += 1;
   var currentDiv = $('<div/>').addClass('innerDiv').attr('id', 'divInner' + this.count)
                      .appendTo(this.mainSection);
 }
 
-DynamicDivs.prototype.divClickHandler = function(div) {
-  if(div.id == $('.innerDiv:last').attr('id')) {
-    div.remove();
+DynamicDiv.prototype.divClickHandler = function(dynamicdiv) {
+  if(dynamicdiv.id == $('.innerDiv:last').attr('id')) {
+    dynamicdiv.remove();
     this.count -= 1;
   }
   else {
-    $(div).addClass('highlight');
+    $(dynamicdiv).addClass('highlight');
   }
 }
 
 $(document).ready(function() {
   var mainSection = $('.section'),
-      dynamicDiv = new DynamicDivs(mainSection);
+      dynamicDiv = new DynamicDiv(mainSection);
   dynamicDiv.init();
 } );
