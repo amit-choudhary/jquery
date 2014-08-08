@@ -1,6 +1,7 @@
 function JsonContent() {
+  this.specialsSection = $('#specials');
   this.targetDiv = $('<div></div>');
-  this.jsonResult = '';
+  this.jsonResult = {};
   this.jsonTarget = '';
 }
 
@@ -11,19 +12,19 @@ JsonContent.prototype.init = function() {
 }
 
 JsonContent.prototype.removeSubmitButton = function() {
-  $('#specials form li.buttons').remove();
+  this.specialsSection.find('form li.buttons').remove();
 }
 
 JsonContent.prototype.insertDiv = function() {
-  $('#specials form').after(this.targetDiv);
+  this.specialsSection.find('form').after(this.targetDiv);
 }
 
 JsonContent.prototype.loadcontent = function() {
   var _this = this;
-  $('#specials select').change(function(event) {
-    _this.jsonTarget = event.target.value;
+  _this.specialsSection.find('select').change(function() {
+    _this.jsonTarget = this.value;
     _this.loadUsingAjax();
-    _this.writeHtml(_this.jsonTarget, _this.jsonResult);
+    _this.showContent();
   } );
 }
 
@@ -40,11 +41,11 @@ JsonContent.prototype.loadUsingAjax = function() {
   } ); 
 }
 
-JsonContent.prototype.writeHtml = function(jsonTarget, result) {
-  this.targetDiv.html('<font color=' + result[jsonTarget].color + '>' + 
-    '<h3>' + result[jsonTarget].title + '</h3>' +
-    '<h4>' + result[jsonTarget].text + '</h4>' +
-    '<img src=.' + result[jsonTarget].image + '></img></font>');
+JsonContent.prototype.showContent = function() {
+  this.targetDiv.html('<font color=' + this.jsonResult[this.jsonTarget].color + '>' + 
+    '<h3>' + this.jsonResult[this.jsonTarget].title + '</h3>' +
+    '<h4>' + this.jsonResult[this.jsonTarget].text + '</h4>' +
+    '<img src=.' + this.jsonResult[this.jsonTarget].image + '></img></font>');
 }
 
 $(function() {
