@@ -1,7 +1,7 @@
 function JsonContent() {
   this.specialsSection = $('#specials');
   this.targetDiv = $('<div></div>');
-  this.jsonResult = {};
+  this.jsonResult = null;
   this.jsonTarget = '';
 }
 
@@ -44,8 +44,8 @@ JsonContent.prototype.loadUsingAjax = function() {
 JsonContent.prototype.showContent = function() {
   this.targetDiv.html('<font color=' + this.jsonResult[this.jsonTarget].color + '>' + 
     '<h3>' + this.jsonResult[this.jsonTarget].title + '</h3>' +
-    '<h4>' + this.jsonResult[this.jsonTarget].text + '</h4>' +
-    '<img src=.' + this.jsonResult[this.jsonTarget].image + '></img></font>');
+    '<h4>' + this.jsonResult[this.jsonTarget].text + '</h4>' + '</font>' +
+    '<img src=.' + this.jsonResult[this.jsonTarget].image + '></img>');
 }
 
 $(function() {
