@@ -1,57 +1,53 @@
-function LoadJson(specialsDiv, elements) {
-this.specialsDiv = specialsDiv;
-this.specialsForm = elements.specialsForm;
-this.selectElement = elements.selectElement;
-this.targetDiv = $('<div></div>');
+function JsonContent() {
+  this.targetDiv = $('<div></div>');
+  this.jsonResult = '';
+  this.jsonTarget = '';
 }
 
-LoadJson.prototype.init = function() {
+JsonContent.prototype.init = function() {
+  this.removeSubmitButton();
   this.insertDiv();
+  this.loadcontent();
 }
 
-LoadJson.prototype.insertDiv = function() {
-  this.specialsForm.after(this.targetDiv);
+JsonContent.prototype.removeSubmitButton = function() {
+  $('#specials form li.buttons').remove();
 }
 
-LoadJson.prototype.loadJsonContent = function() {
+JsonContent.prototype.insertDiv = function() {
+  $('#specials form').after(this.targetDiv);
+}
+
+JsonContent.prototype.loadcontent = function() {
   var _this = this;
-  this.selectElement.change(function(event) {
-    var jsonTarget = event.target.value;
-    _this.loadcontentUsingAjax(jsonTarget);
+  $('#specials select').change(function(event) {
+    _this.jsonTarget = event.target.value;
+    _this.loadUsingAjax();
+    _this.writeHtml(_this.jsonTarget, _this.jsonResult);
   } );
 }
 
-LoadJson.prototype.loadcontentUsingAjax = function(jsonTarget) {
+JsonContent.prototype.loadUsingAjax = function() {
   var _this = this;
   $.ajax( { 
+    async: false,
     dataType : 'json',
     url: './data/specials.json',
     cache: true,
-    success:function(result, status, xhr) {
-      _this.writeHtml(jsonTarget, result);
+    success:function(result) {
+      _this.jsonResult = result;
     }
   } ); 
 }
 
-LoadJson.prototype.writeHtml = function(jsonTarget, result) {
-  this.targetDiv.html('<font color=' + result[jsonTarget].color + 
+JsonContent.prototype.writeHtml = function(jsonTarget, result) {
+  this.targetDiv.html('<font color=' + result[jsonTarget].color + '>' + 
     '<h3>' + result[jsonTarget].title + '</h3>' +
     '<h4>' + result[jsonTarget].text + '</h4>' +
     '<img src=.' + result[jsonTarget].image + '></img></font>');
-  this.removeSubmitButton();
-}
-
-LoadJson.prototype.removeSubmitButton = function() {
-  this.specialsForm.find(':submit').remove();
 }
 
 $(function() {
-  var specialsDiv = $('#specials');
-  var elements = {
-    specialsForm: specialsDiv.find('form'),
-    selectElement: specialsDiv.find('select')
-  }
-  var loadJson = new LoadJson(specialsDiv, elements);
-  loadJson.init();
-  loadJson.loadJsonContent();
+  var jsonContent = new JsonContent();
+  jsonContent.init();
 } );
