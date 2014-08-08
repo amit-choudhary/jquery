@@ -1,45 +1,40 @@
-function CreateStack(elements) {
-  this.addStackButton = elements.addStackButton;
-  this.mainSection = elements.mainSection
+function DynamicDivs(mainSection) {
+  this.mainSection = mainSection
   this.count = 0 ;
 }
 
-CreateStack.prototype.init = function() {
-  this.addStackHandler();
-  this.divClickHandler();
+DynamicDivs.prototype.init = function() {
+  this.bindEvents();
 }
 
-CreateStack.prototype.addDiv = function() {
+DynamicDivs.prototype.bindEvents = function() {
+  var _this = this;
+  $('#add-stack').on('click', function(){
+    _this.addDiv();
+  } );
+  _this.mainSection.on('click','.innerDiv' ,function() {
+    _this.divClickHandler(this);
+  } );
+}
+
+DynamicDivs.prototype.addDiv = function() {
   this.count += 1;
   var currentDiv = $('<div/>').addClass('innerDiv').attr('id', 'divInner' + this.count)
                      .appendTo(this.mainSection);
-};
+}
 
-CreateStack.prototype.addStackHandler = function() {
-  var _this = this;
-  _this.addStackButton.on('click', function(){
-    _this.addDiv();
-  } );
-};
-
-CreateStack.prototype.divClickHandler = function() {
-  var _this = this;
-  _this.mainSection.on('click','.innerDiv' ,function() {
-    if(this.id == $('.innerDiv:last').attr('id')) {
-      this.remove();
-      _this.count -= 1;
-    }
-    else {
-      $(this).addClass('highlight');
-    }
-  } );
-};
+DynamicDivs.prototype.divClickHandler = function(div) {
+  if(div.id == $('.innerDiv:last').attr('id')) {
+    div.remove();
+    this.count -= 1;
+  }
+  else {
+    $(div).addClass('highlight');
+  }
+}
 
 $(document).ready(function() {
-  var elements = {
-    addStackButton : $('#add-stack'),
-    mainSection : $('.section')
-  };
-  var createStackObj = new CreateStack(elements);
-  createStackObj.init();
+  var mainSection = $('.section'),
+      dynamicDiv = new DynamicDivs(mainSection);
+  dynamicDiv.init();
 } );
