@@ -12,7 +12,7 @@ DynamicDiv.prototype.bindEvents = function() {
   $('#add-stack').on('click', function(){
     _this.addDiv();
   } );
-  _this.mainSection.on('click', '.innerDiv',function() {
+  _this.mainSection.on('click', '.innerDiv', function() {
     _this.divClickHandler(this);
   } );
 }
@@ -24,7 +24,7 @@ DynamicDiv.prototype.addDiv = function() {
 }
 
 DynamicDiv.prototype.divClickHandler = function(dynamicdiv) {
-  if(dynamicdiv.id == $('.innerDiv:last').attr('id')) {
+  if (dynamicdiv.id == $('.innerDiv:last').attr('id')) {
     dynamicdiv.remove();
     this.count -= 1;
   }
