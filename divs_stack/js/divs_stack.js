@@ -19,8 +19,8 @@ DynamicDiv.prototype.bindEvents = function() {
 
 DynamicDiv.prototype.addDiv = function() {
   this.count += 1;
-  var currentDiv = $('<div/>').addClass('innerDiv').attr('id', 'divInner' + this.count)
-                     .appendTo(this.mainSection);
+  $('<div/>').addClass('innerDiv').attr('id', 'divInner' + this.count)
+    .appendTo(this.mainSection);
 }
 
 DynamicDiv.prototype.divClickHandler = function(dynamicdiv) {
